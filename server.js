@@ -105,7 +105,7 @@ app.use(
 
 app.use(
     session({
-        secret: process.env.SESSION_SECRET || "campusfind_secret",
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
 
@@ -2361,38 +2361,36 @@ app.use(
 
 
 // ==========================================
-// START SERVER AFTER MONGODB CONNECTION
+// START SERVER LOCALLY
 // ==========================================
 
-async function startServer() {
+if (require.main === module) {
+    async function startServer() {
+        try {
+            await connectDatabase();
 
-    try {
-
-        await connectDatabase();
-
-
-        app.listen(
-            PORT,
-            () => {
-
+            app.listen(PORT, () => {
                 console.log(
                     `Server running at http://localhost:${PORT}`
                 );
-
-            }
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Failed to start server:",
-            error
-        );
-
+            });
+        } catch (error) {
+            console.error(
+                "Failed to start server:",
+                error
+            );
+        }
     }
 
+    startServer();
 }
 
+// ==========================================
+// EXPORT FOR VERCEL
+// ==========================================
 
-startServer();
+module.exports = {
+    app,
+    connectDatabase
+};
+
