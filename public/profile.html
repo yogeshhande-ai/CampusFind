@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Profile - CampusFind</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVBAR
+     ========================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🔎
+        </div>
+
+        <div>
+
+            <h1>
+                CampusFind
+            </h1>
+
+            <span>
+                Lost & Found
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#items">
+            Browse Items
+        </a>
+
+        <a href="my-reports.html">
+            My Reports
+        </a>
+
+        <a
+            href="profile.html"
+            class="active"
+        >
+            Profile
+        </a>
+
+        <a href="report.html">
+            Report Item
+        </a>
+
+        <!-- EXISTING LOGOUT -->
+        <a
+            href="#"
+            onclick="logoutUser(); return false;"
+        >
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ==========================================
+     PROFILE PAGE
+     ========================================== -->
+
+<main class="profile-page">
+
+
+    <!-- ==========================================
+         PROFILE HEADER
+         ========================================== -->
+
+    <section class="profile-header">
+
+        <span class="small-title">
+            MY ACCOUNT
+        </span>
+
+        <h2>
+            My Profile
+        </h2>
+
+        <p>
+            View and manage your CampusFind account information.
+        </p>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         PROFILE CARD
+         ========================================== -->
+
+    <section class="profile-card">
+
+        <div class="profile-avatar">
+            👤
+        </div>
+
+
+        <div class="profile-user-info">
+
+            <h1 id="profileName">
+                Loading...
+            </h1>
+
+            <p id="profileEmail">
+                Loading...
+            </p>
+
+            <span class="profile-badge">
+                CampusFind User
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         ACCOUNT INFORMATION
+         ========================================== -->
+
+    <section class="account-card">
+
+        <div class="account-card-header">
+
+            <div>
+
+                <span class="small-title">
+                    ACCOUNT
+                </span>
+
+                <h3>
+                    Account Information
+                </h3>
+
+            </div>
+
+
+            <!-- EDIT PROFILE BUTTON -->
+
+            <button
+                type="button"
+                class="edit-profile-btn"
+                onclick="openEditProfile()"
+            >
+                ✏️ Edit Profile
+            </button>
+
+        </div>
+
+
+
+        <div class="account-info-grid">
+
+
+            <div class="account-info-item">
+
+                <span>
+                    Full Name
+                </span>
+
+                <strong id="accountName">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <div class="account-info-item">
+
+                <span>
+                    Email Address
+                </span>
+
+                <strong id="accountEmail">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         EDIT PROFILE FORM
+         ========================================== -->
+
+    <section
+        class="edit-profile-card"
+        id="editProfileCard"
+        style="display: none;"
+    >
+
+        <div class="edit-profile-header">
+
+            <div>
+
+                <span class="small-title">
+                    EDIT ACCOUNT
+                </span>
+
+                <h3>
+                    Update Your Profile
+                </h3>
+
+                <p>
+                    Change your name or email address.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <form
+            id="editProfileForm"
+        >
+
+
+            <!-- NAME -->
+
+            <div class="profile-form-group">
+
+                <label for="editName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="editName"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="profile-form-group">
+
+                <label for="editEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="editEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="edit-profile-actions">
+
+                <button
+                    type="submit"
+                    class="save-profile-btn"
+                >
+                    💾 Save Changes
+                </button>
+
+
+                <button
+                    type="button"
+                    class="cancel-profile-btn"
+                    onclick="closeEditProfile()"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         CHANGE PASSWORD
+         ========================================== -->
+
+    <section
+        class="change-password-card"
+        id="changePasswordCard"
+    >
+
+        <div class="change-password-header">
+
+            <div>
+
+                <span class="small-title">
+                    SECURITY
+                </span>
+
+                <h3>
+                    Change Password
+                </h3>
+
+                <p>
+                    Update your account password securely.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <form
+            id="changePasswordForm"
+        >
+
+
+            <!-- CURRENT PASSWORD -->
+
+            <div class="profile-form-group">
+
+                <label for="currentPassword">
+                    Current Password
+                </label>
+
+
+                <div class="password-input-wrapper">
+
+                    <input
+                        type="password"
+                        id="currentPassword"
+                        placeholder="Enter your current password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'currentPassword',
+                            this
+                        )"
+                        aria-label="Show password"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NEW PASSWORD -->
+
+            <div class="profile-form-group">
+
+                <label for="newPassword">
+                    New Password
+                </label>
+
+
+                <div class="password-input-wrapper">
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        placeholder="Enter your new password"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'newPassword',
+                            this
+                        )"
+                        aria-label="Show password"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="profile-form-group">
+
+                <label for="confirmPassword">
+                    Confirm New Password
+                </label>
+
+
+                <div class="password-input-wrapper">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your new password"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'confirmPassword',
+                            this
+                        )"
+                        aria-label="Show password"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASSWORD BUTTONS -->
+
+            <div class="edit-profile-actions">
+
+                <button
+                    type="submit"
+                    class="save-profile-btn"
+                >
+                    🔐 Change Password
+                </button>
+
+
+                <button
+                    type="reset"
+                    class="cancel-profile-btn"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         PROFILE STATISTICS
+         ========================================== -->
+
+    <section class="profile-stats">
+
+
+        <div class="profile-stat-card">
+
+            <div class="profile-stat-icon">
+                📋
+            </div>
+
+            <div>
+
+                <span>
+                    Total Reports
+                </span>
+
+                <h3 id="totalReports">
+                    0
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="profile-stat-card">
+
+            <div class="profile-stat-icon">
+                🔎
+            </div>
+
+            <div>
+
+                <span>
+                    Lost Items
+                </span>
+
+                <h3 id="lostReports">
+                    0
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="profile-stat-card">
+
+            <div class="profile-stat-icon">
+                🎒
+            </div>
+
+            <div>
+
+                <span>
+                    Found Items
+                </span>
+
+                <h3 id="foundReports">
+                    0
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+         PROFILE ACTIONS
+         ========================================== -->
+
+    <section class="profile-actions">
+
+
+        <a
+            href="my-reports.html"
+            class="profile-action-card"
+        >
+
+            <div class="profile-action-icon">
+                📋
+            </div>
+
+            <div>
+
+                <h3>
+                    My Reports
+                </h3>
+
+                <p>
+                    View and manage your reports.
+                </p>
+
+            </div>
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+
+
+        <a
+            href="report.html"
+            class="profile-action-card"
+        >
+
+            <div class="profile-action-icon">
+                📢
+            </div>
+
+            <div>
+
+                <h3>
+                    Report an Item
+                </h3>
+
+                <p>
+                    Report a lost or found item.
+                </p>
+
+            </div>
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        🔎 CampusFind
+    </div>
+
+    <p>
+        Making campus communities more connected.
+    </p>
+
+    <span>
+        © 2026 CampusFind. All rights reserved.
+    </span>
+
+</footer>
+
+
+
+<!-- ==========================================
+     MAIN JAVASCRIPT
+     ========================================== -->
+
+<script src="script.js"></script>
+
+
+
+<!-- ==========================================
+     PROFILE JAVASCRIPT
+     ========================================== -->
+
+<script>
+
+
+// ==========================================
+// OPEN EDIT PROFILE
+// ==========================================
+
+async function openEditProfile() {
+
+    const editCard =
+        document.getElementById(
+            "editProfileCard"
+        );
+
+    const editName =
+        document.getElementById(
+            "editName"
+        );
+
+    const editEmail =
+        document.getElementById(
+            "editEmail"
+        );
+
+
+    try {
+
+        const response =
+            await fetch("/api/me");
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            alert(
+                "Please login first."
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        editName.value =
+            data.user.name || "";
+
+
+        editEmail.value =
+            data.user.email || "";
+
+
+        editCard.style.display =
+            "block";
+
+
+        editCard.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "center"
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "Error opening edit profile:",
+            error
+        );
+
+        alert(
+            "Unable to load profile."
+        );
+
+    }
+
+}
+
+
+
+// ==========================================
+// CLOSE EDIT PROFILE
+// ==========================================
+
+function closeEditProfile() {
+
+    const editCard =
+        document.getElementById(
+            "editProfileCard"
+        );
+
+
+    editCard.style.display =
+        "none";
+
+}
+
+
+
+// ==========================================
+// SAVE PROFILE
+// ==========================================
+
+document
+    .getElementById("editProfileForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById("editName")
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById("editEmail")
+                    .value
+                    .trim();
+
+
+            if (!name || !email) {
+
+                alert(
+                    "Please fill all fields."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/profile",
+                        {
+
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    name: name,
+
+                                    email: email
+
+                                })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    alert(
+                        "❌ " +
+                        (
+                            data.message ||
+                            "Profile update failed."
+                        )
+                    );
+
+                    return;
+
+                }
+
+
+                // UPDATE PROFILE DISPLAY
+
+                document
+                    .getElementById(
+                        "profileName"
+                    )
+                    .textContent =
+                    data.user.name;
+
+
+                document
+                    .getElementById(
+                        "profileEmail"
+                    )
+                    .textContent =
+                    data.user.email;
+
+
+                document
+                    .getElementById(
+                        "accountName"
+                    )
+                    .textContent =
+                    data.user.name;
+
+
+                document
+                    .getElementById(
+                        "accountEmail"
+                    )
+                    .textContent =
+                    data.user.email;
+
+
+                closeEditProfile();
+
+
+                alert(
+                    "✅ " +
+                    data.message
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Profile update error:",
+                    error
+                );
+
+
+                alert(
+                    "❌ Server connection error."
+                );
+
+            }
+
+        }
+    );
+
+
+
+// ==========================================
+// CHANGE PASSWORD
+// ==========================================
+
+document
+    .getElementById("changePasswordForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const currentPassword =
+                document
+                    .getElementById(
+                        "currentPassword"
+                    )
+                    .value;
+
+
+            const newPassword =
+                document
+                    .getElementById(
+                        "newPassword"
+                    )
+                    .value;
+
+
+            const confirmPassword =
+                document
+                    .getElementById(
+                        "confirmPassword"
+                    )
+                    .value;
+
+
+
+            // CHECK PASSWORD LENGTH
+
+            if (newPassword.length < 6) {
+
+                alert(
+                    "❌ New password must be at least 6 characters."
+                );
+
+                return;
+
+            }
+
+
+
+            // CHECK PASSWORD MATCH
+
+            if (
+                newPassword !==
+                confirmPassword
+            ) {
+
+                alert(
+                    "❌ New passwords do not match."
+                );
+
+                return;
+
+            }
+
+
+
+            // CHECK SAME PASSWORD
+
+            if (
+                currentPassword ===
+                newPassword
+            ) {
+
+                alert(
+                    "❌ New password must be different from your current password."
+                );
+
+                return;
+
+            }
+
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/change-password",
+                        {
+
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    currentPassword:
+                                        currentPassword,
+
+                                    newPassword:
+                                        newPassword
+
+                                })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    alert(
+                        "❌ " +
+                        (
+                            data.message ||
+                            "Password change failed."
+                        )
+                    );
+
+                    return;
+
+                }
+
+
+                alert(
+                    "✅ " +
+                    data.message
+                );
+
+
+                document
+                    .getElementById(
+                        "changePasswordForm"
+                    )
+                    .reset();
+
+
+                // RESET ALL EYE BUTTONS
+
+                document
+                    .querySelectorAll(
+                        ".password-toggle"
+                    )
+                    .forEach(
+                        function(button) {
+
+                            button.textContent =
+                                "👁️";
+
+                        }
+                    );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Change password error:",
+                    error
+                );
+
+
+                alert(
+                    "❌ Server connection error."
+                );
+
+            }
+
+        }
+    );
+
+
+
+// ==========================================
+// SHOW / HIDE PASSWORD
+// ==========================================
+
+function togglePassword(
+    inputId,
+    button
+) {
+
+    const input =
+        document.getElementById(
+            inputId
+        );
+
+
+    if (input.type === "password") {
+
+        input.type = "text";
+
+        button.textContent =
+            "🙈";
+
+        button.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
+
+    } else {
+
+        input.type = "password";
+
+        button.textContent =
+            "👁️";
+
+        button.setAttribute(
+            "aria-label",
+            "Show password"
+        );
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

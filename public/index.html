@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusFind | Lost & Found Portal</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Toast Notification -->
+<div id="toast" class="toast">
+    <span id="toastIcon">✓</span>
+    <span id="toastMessage">Success</span>
+</div>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🔎
+            </div>
+
+            <div>
+                <h1>CampusFind</h1>
+                <span>Lost & Found Portal</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+    <a href="index.html" class="active">
+        Home
+    </a>
+
+    <a href="#items">
+        Browse Items
+    </a>
+
+    <a href="#how-it-works">
+        How It Works
+    </a>
+
+    <a href="#about">
+        About
+    </a>
+
+    <a href="my-reports.html">
+        My Reports
+    </a>
+
+    <a href="report.html" class="nav-button">
+        + Report Item
+    </a>
+
+</nav>
+
+           
+
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                🏫 Campus Community
+            </div>
+
+
+            <h2>
+                Lost something?
+                <span>Let's find it.</span>
+            </h2>
+
+
+            <p>
+                A simple and trusted platform for students to
+                report, search and recover lost belongings
+                across the campus.
+            </p>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    🔎
+                </span>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search ID cards, bags, phones, books..."
+                >
+
+                <button onclick="searchItems()">
+                    Search
+                </button>
+
+            </div>
+
+
+            <!-- HERO BUTTONS -->
+
+            <div class="hero-actions">
+
+                <a href="report.html" class="primary-button">
+                    📢 Report Lost / Found
+                </a>
+
+                <a href="#items" class="secondary-button">
+                    Browse Items →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <section class="stats">
+
+        <!-- LOST ITEMS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                🔎
+            </div>
+
+            <div>
+                <h3 id="lostCount">
+                    0
+                </h3>
+
+                <p>
+                    Lost Items
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- FOUND ITEMS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                🎒
+            </div>
+
+            <div>
+                <h3 id="foundCount">
+                    0
+                </h3>
+
+                <p>
+                    Found Items
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- RETURNED ITEMS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon purple">
+                🤝
+            </div>
+
+            <div>
+                <h3 id="returnedCount">
+                    0
+                </h3>
+
+                <p>
+                    Items Returned
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- USERS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon orange">
+                👥
+            </div>
+
+            <div>
+                <h3 id="userCount">
+                    150+
+                </h3>
+
+                <p>
+                    Campus Users
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= RECENT ITEMS ================= -->
+
+    <section class="items-section" id="items">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="small-title">
+                    RECENT ACTIVITY
+                </span>
+
+                <h2>
+                    Recently Reported Items
+                </h2>
+
+                <p>
+                    Browse lost and found items reported
+                    by your campus community.
+                </p>
+
+            </div>
+
+
+            <!-- FILTER -->
+
+            <select
+                id="filter"
+                onchange="filterItems()"
+            >
+
+                <option value="all">
+                    All Items
+                </option>
+
+                <option value="Lost">
+                    Lost Items
+                </option>
+
+                <option value="Found">
+                    Found Items
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ================= DYNAMIC ITEMS ================= -->
+
+        <!--
+            IMPORTANT:
+
+            JavaScript will load the items from MongoDB
+            and display them inside this container.
+        -->
+
+        <div
+            class="items-grid"
+            id="itemsContainer"
+        >
+
+            <div class="loading-message">
+
+                <div class="loading-icon">
+                    🔄
+                </div>
+
+                <p>
+                    Loading reported items...
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- VIEW ALL -->
+
+        <div class="view-all">
+
+            <button onclick="window.location.href='#items'">
+                View All Items →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section
+        class="how-section"
+        id="how-it-works"
+    >
+
+        <div class="section-heading center">
+
+            <span class="small-title">
+                HOW IT WORKS
+            </span>
+
+            <h2>
+                Find it. Report it. Return it.
+            </h2>
+
+            <p>
+                Three simple steps to help your campus community.
+            </p>
+
+        </div>
+
+
+
+        <div class="steps">
+
+
+            <!-- STEP 1 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Report
+                </h3>
+
+                <p>
+                    Lost or found something?
+                    Create a report with the item details,
+                    location and contact information.
+                </p>
+
+            </div>
+
+
+
+            <!-- STEP 2 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Search
+                </h3>
+
+                <p>
+                    Search through reported items
+                    using item name, category,
+                    location or other details.
+                </p>
+
+            </div>
+
+
+
+            <!-- STEP 3 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Reconnect
+                </h3>
+
+                <p>
+                    Contact the person who reported
+                    the item and help return it
+                    to its rightful owner.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ABOUT SECTION ================= -->
+
+    <section
+        class="about-section"
+        id="about"
+    >
+
+        <div class="about-content">
+
+            <span class="small-title">
+                ABOUT CAMPUSFIND
+            </span>
+
+            <h2>
+                Making campus life a little easier.
+            </h2>
+
+            <p>
+                CampusFind is a digital Lost & Found Portal
+                designed to help students quickly report,
+                search and reconnect with their lost belongings.
+            </p>
+
+            <p>
+                Instead of depending only on notice boards
+                or messages, students can use one centralized
+                platform to find recently reported items.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= CALL TO ACTION ================= -->
+
+    <section class="cta-section">
+
+        <div class="cta-content">
+
+            <h2>
+                Lost something on campus?
+            </h2>
+
+            <p>
+                Report it now and let your campus community
+                help you find it.
+            </p>
+
+            <a
+                href="report.html"
+                class="primary-button"
+            >
+                📢 Report an Item
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🔎 CampusFind
+        </div>
+
+        <p>
+            Making campus communities more connected.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="#items">
+                Browse Items
+            </a>
+
+            <a href="report.html">
+                Report Item
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </div>
+
+        <span>
+            © 2026 CampusFind. All rights reserved.
+        </span>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

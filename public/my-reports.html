@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Reports - CampusFind</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🔎
+        </div>
+
+        <div>
+
+            <h1>
+                CampusFind
+            </h1>
+
+            <span>
+                Lost & Found
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#items">
+            Browse Items
+        </a>
+
+        <a
+            href="my-reports.html"
+            class="active"
+        >
+            My Reports
+        </a>
+
+        <a href="report.html">
+            Report Item
+        </a>
+
+        <a
+            href="#"
+            onclick="logoutUser(); return false;"
+        >
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+    <main>
+
+        <section class="page-header">
+
+            <h1>
+                My Reports
+            </h1>
+
+            <p>
+                View and manage the items you have reported.
+            </p>
+
+        </section>
+
+
+        <section class="items-section">
+
+            <div
+                id="myReportsContainer"
+                class="items-grid"
+            >
+
+                <div class="loading-message">
+
+                    <div class="loading-icon">
+                        ⏳
+                    </div>
+
+                    <p>
+                        Loading your reports...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 CampusFind - Campus Lost & Found Portal
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

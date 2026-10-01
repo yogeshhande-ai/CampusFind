@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard - CampusFind</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         NAVBAR
+    =========================================== -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                🔎 CampusFind
+            </a>
+
+
+            <div
+                class="nav-links"
+                id="navLinks"
+            >
+
+                <!-- Navigation is loaded by script.js -->
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==========================================
+         DASHBOARD
+    =========================================== -->
+
+    <main class="dashboard-page">
+
+
+        <div class="dashboard-container">
+
+
+            <!-- HEADER -->
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <span class="dashboard-label">
+                        CAMPUSFIND
+                    </span>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Track lost and found items
+                        across your campus.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 STAT CARDS
+            ======================================= -->
+
+            <div class="dashboard-stats">
+
+
+                <!-- TOTAL -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Reports
+                        </span>
+
+                        <h2 id="totalReports">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ACTIVE -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        🔵
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Active Items
+                        </span>
+
+                        <h2 id="activeReports">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RESOLVED -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Resolved Items
+                        </span>
+
+                        <h2 id="resolvedReports">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MY REPORTS -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <span>
+                            My Reports
+                        </span>
+
+                        <h2 id="myReports">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ======================================
+                 MY REPORTS SECTION
+            ======================================= -->
+
+            <section class="dashboard-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="dashboard-label">
+                            YOUR ACTIVITY
+                        </span>
+
+                        <h2>
+                            My Reports
+                        </h2>
+
+                    </div>
+
+                    <a
+                        href="my-reports.html"
+                        class="dashboard-link"
+                    >
+                        View All →
+                    </a>
+
+                </div>
+
+
+
+                <div class="dashboard-mini-grid">
+
+
+                    <!-- MY LOST -->
+
+                    <div class="dashboard-mini-card">
+
+                        <div class="mini-icon">
+                            🔴
+                        </div>
+
+                        <div>
+
+                            <span>
+                                My Lost Items
+                            </span>
+
+                            <strong id="myLostReports">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- MY FOUND -->
+
+                    <div class="dashboard-mini-card">
+
+                        <div class="mini-icon">
+                            🟢
+                        </div>
+
+                        <div>
+
+                            <span>
+                                My Found Items
+                            </span>
+
+                            <strong id="myFoundReports">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ======================================
+                 QUICK ACTIONS
+            ======================================= -->
+
+            <section class="dashboard-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="dashboard-label">
+                            QUICK ACTIONS
+                        </span>
+
+                        <h2>
+                            What would you like to do?
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="dashboard-actions">
+
+
+                    <a
+                        href="report.html"
+                        class="dashboard-action-card"
+                    >
+
+                        <span class="action-icon">
+                            ➕
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Report an Item
+                            </h3>
+
+                            <p>
+                                Report a lost or found
+                                item on campus.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a
+                        href="index.html"
+                        class="dashboard-action-card"
+                    >
+
+                        <span class="action-icon">
+                            🔍
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Browse Items
+                            </h3>
+
+                            <p>
+                                Search through campus
+                                lost and found reports.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a
+                        href="my-reports.html"
+                        class="dashboard-action-card"
+                    >
+
+                        <span class="action-icon">
+                            📁
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                My Reports
+                            </h3>
+
+                            <p>
+                                Manage the items you
+                                have reported.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CampusFind · Lost & Found
+        </p>
+
+    </footer>
+
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="script.js"></script>
+
+
+    <script>
+
+        // ==========================================
+        // LOAD DASHBOARD DATA
+        // ==========================================
+
+        async function loadDashboard() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/dashboard"
+                    );
+
+
+                if (!response.ok) {
+
+                    if (response.status === 401) {
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+
+                    }
+
+                    throw new Error(
+                        "Failed to load dashboard"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                // ==================================
+                // UPDATE STATISTICS
+                // ==================================
+
+                document.getElementById(
+                    "totalReports"
+                ).textContent =
+                    data.totalReports;
+
+
+                document.getElementById(
+                    "activeReports"
+                ).textContent =
+                    data.activeReports;
+
+
+                document.getElementById(
+                    "resolvedReports"
+                ).textContent =
+                    data.resolvedReports;
+
+
+                document.getElementById(
+                    "myReports"
+                ).textContent =
+                    data.myReports;
+
+
+                document.getElementById(
+                    "myLostReports"
+                ).textContent =
+                    data.myLostReports;
+
+
+                document.getElementById(
+                    "myFoundReports"
+                ).textContent =
+                    data.myFoundReports;
+
+
+            } catch (error) {
+
+                console.error(
+                    "Dashboard error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        // Load dashboard
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadDashboard
+        );
+
+    </script>
+
+
+</body>
+
+</html>

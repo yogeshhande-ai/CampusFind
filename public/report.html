@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Report Item - CampusFind</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         NAVBAR
+    =========================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🔎
+            </div>
+
+            <div>
+
+                <h1>
+                    CampusFind
+                </h1>
+
+                <span>
+                    Lost & Found
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#items">
+                Browse Items
+            </a>
+
+            <a
+                href="report.html"
+                class="active"
+            >
+                Report Item
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         REPORT PAGE
+    =========================================== -->
+
+    <main class="report-page">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="report-header">
+
+            <span class="small-title">
+                CAMPUS COMMUNITY
+            </span>
+
+            <h2>
+                Report a Lost or Found Item
+            </h2>
+
+            <p>
+                Provide some details about the item so the
+                campus community can help.
+            </p>
+
+        </div>
+
+
+
+        <!-- ==========================================
+             REPORT FORM
+        =========================================== -->
+
+        <form
+            id="itemForm"
+            class="report-form"
+        >
+
+
+            <!-- ======================================
+                 TYPE
+            ======================================= -->
+
+            <div class="form-section">
+
+                <h3>
+                    What happened?
+                </h3>
+
+                <p>
+                    Select whether you lost or found the item.
+                </p>
+
+
+                <div class="type-options">
+
+
+                    <!-- LOST -->
+
+                    <label class="type-option">
+
+                        <input
+                            type="radio"
+                            name="type"
+                            value="Lost"
+                            checked
+                        >
+
+                        <div>
+
+                            <strong>
+                                🔴 I Lost Something
+                            </strong>
+
+                            <small>
+                                Report an item you have lost.
+                            </small>
+
+                        </div>
+
+                    </label>
+
+
+
+                    <!-- FOUND -->
+
+                    <label class="type-option">
+
+                        <input
+                            type="radio"
+                            name="type"
+                            value="Found"
+                        >
+
+                        <div>
+
+                            <strong>
+                                🟢 I Found Something
+                            </strong>
+
+                            <small>
+                                Report an item you have found.
+                            </small>
+
+                        </div>
+
+                    </label>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 ITEM DETAILS
+            ======================================= -->
+
+            <div class="form-section">
+
+                <h3>
+                    Item Details
+                </h3>
+
+                <p>
+                    Tell us about the lost or found item.
+                </p>
+
+
+                <div class="form-grid">
+
+
+                    <!-- ITEM NAME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Item Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="itemName"
+                            placeholder="e.g. College ID Card"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Category *
+                        </label>
+
+                        <select
+                            id="category"
+                            required
+                        >
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="ID Card">
+                                ID Card
+                            </option>
+
+                            <option value="Electronics">
+                                Electronics
+                            </option>
+
+                            <option value="Bag">
+                                Bag
+                            </option>
+
+                            <option value="Books">
+                                Books
+                            </option>
+
+                            <option value="Keys">
+                                Keys
+                            </option>
+
+                            <option value="Clothing">
+                                Clothing
+                            </option>
+
+                            <option value="Documents">
+                                Documents
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- LOCATION -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Location *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="e.g. College Library"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- DATE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Date *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Description *
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Describe the item, its color, brand, identifying features, etc."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- CONTACT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Contact Information *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contact"
+                        placeholder="Email or phone number"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ======================================
+                 IMAGE UPLOAD
+            ======================================= -->
+
+            <div class="form-section">
+
+                <h3>
+                    Item Photo
+                </h3>
+
+                <p>
+                    Adding a photo can make it easier to
+                    identify the item.
+                </p>
+
+
+                <div class="upload-box">
+
+                    <span>
+                        📷
+                    </span>
+
+                    <strong>
+                        Upload Item Photo
+                    </strong>
+
+                    <small>
+                        JPG, PNG or WEBP
+                    </small>
+
+
+                    <!-- IMPORTANT -->
+
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 SUBMIT BUTTONS
+            ======================================= -->
+
+            <div class="form-submit">
+
+
+                <!-- CANCEL -->
+
+                <a
+                    href="index.html"
+                    class="cancel-button"
+                >
+                    Cancel
+                </a>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                >
+                    Submit Report →
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
