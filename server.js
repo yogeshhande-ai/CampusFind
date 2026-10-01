@@ -9,6 +9,9 @@ const multer = require("multer");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const nodemailer = require("nodemailer");
+const MongoStore = require("connect-mongo").default;
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 require("dotenv").config();
 
@@ -37,85 +40,49 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+// ==========================================
+// CLOUDINARY CONFIGURATION
+// ==========================================
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // ==========================================
 // IMAGE UPLOAD CONFIGURATION
 // ==========================================
 
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "campusfind",
+        allowed_formats: ["jpg", "png", "webp"]
+    }
+});
+
 const upload = multer({
-
-    storage: multer.diskStorage({
-
-        destination: function (req, file, cb) {
-
-            cb(
-                null,
-                path.join(__dirname, "uploads/")
-            );
-
-        },
-
-        filename: function (req, file, cb) {
-
-            const uniqueName =
-                Date.now() +
-                "-" +
-                Math.round(Math.random() * 1E9) +
-                path.extname(file.originalname);
-
-            cb(
-                null,
-                uniqueName
-            );
-
-        }
-
-    }),
-
-    // Maximum file size: 5 MB
+    storage: storage,
     limits: {
-
-        fileSize:
-            5 * 1024 * 1024
-
+        fileSize: 5 * 1024 * 1024
     },
-
-    // Allow only image files
     fileFilter: function (req, file, cb) {
-
         const allowedTypes = [
-
             "image/jpeg",
             "image/png",
             "image/webp"
-
         ];
 
-        if (
-            allowedTypes.includes(
-                file.mimetype
-            )
-        ) {
-
-            cb(
-                null,
-                true
-            );
-
+        if (allowedTypes.includes(file.mimetype)) {
+            cb(null, true);
         } else {
-
-            cb(
-                new Error(
-                    "Only JPG, PNG, and WEBP images are allowed."
-                )
-            );
-
+            cb(new Error(
+                "Only JPG, PNG, and WEBP images are allowed."
+            ));
         }
-
     }
-
 });
-
 
 // ==========================================
 // MIDDLEWARE
@@ -138,35 +105,27 @@ app.use(
 
 app.use(
     session({
-
-        secret:
-            process.env.SESSION_SECRET ||
-            "campusfind_secret",
-
+        secret: process.env.SESSION_SECRET || "campusfind_secret",
         resave: false,
-
         saveUninitialized: false,
 
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGO_URI,
+            dbName: "lost_found_portal",
+            collectionName: "sessions",
+            ttl: 60 * 60 * 24
+        }),
+
         cookie: {
-
             httpOnly: true,
-
-            secure:
-                process.env.NODE_ENV === "production",
-
-            sameSite:
-                process.env.NODE_ENV === "production"
-                    ? "none"
-                    : "lax",
-
-            maxAge:
-                1000 * 60 * 60 * 24
-
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production"
+                ? "none"
+                : "lax",
+            maxAge: 1000 * 60 * 60 * 24
         }
-
     })
 );
-
 
 // ==========================================
 // SERVE FRONTEND
@@ -1596,7 +1555,7 @@ app.post(
 
                 image:
                     req.file
-                        ? req.file.filename
+                        ? req.file.path
                         : null,
 
 
