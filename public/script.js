@@ -120,7 +120,7 @@ function displayItems(items) {
                 item.image
                     ? `
                         <img
-                            src="/uploads/${item.image}"
+                            src="${item.image}"
                             alt="${escapeHTML(
                                 item.itemName
                             )}"
