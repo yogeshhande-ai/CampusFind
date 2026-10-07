@@ -584,16 +584,32 @@ app.post(
             }
 
 
-            // CREATE LOGIN SESSION
+ // CREATE LOGIN SESSION
 
-            req.session.userId =
-                user._id.toString();
+req.session.userId = user._id.toString();
+req.session.userName = user.name;
+req.session.userEmail = user.email;
 
-            req.session.userName =
-                user.name;
+// SAVE SESSION BEFORE SENDING RESPONSE
+req.session.save((err) => {
+    if (err) {
+        console.error("Session save error:", err);
+        return res.status(500).json({
+            message: "Could not save login session."
+        });
+    }
 
-            req.session.userEmail =
-                user.email;
+    return res.json({
+        message: "Login successful!",
+        user: {
+            id: user._id,
+            name: user.name,
+            email: user.email
+        }
+    });
+});
+
+
 
 
             // SEND RESPONSE
