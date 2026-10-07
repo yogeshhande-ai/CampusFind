@@ -2188,118 +2188,25 @@ function escapeHTML(value) {
 
 async function updateNavigation() {
 
-    const nav = document.querySelector(".nav-links");
+    const navLinks =
+        document.querySelector(".nav-links");
 
-    if (!nav) return;
-
-    try {
-
-        const response = await fetch("/api/me");
-
-        if (response.ok) {
-
-            // USER IS LOGGED IN
-
-            nav.innerHTML = `
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="index.html#browse">
-                    Browse Items
-                </a>
-
-                <a href="my-reports.html">
-                    My Reports
-                </a>
-
-                <a href="profile.html">
-                    Profile
-                </a>
-
-                <a
-                    href="report.html"
-                    class="nav-report-btn"
-                >
-                    Report Item
-                </a>
-
-                <a
-                    href="#"
-                    onclick="logoutUser(); return false;"
-                >
-                    Logout
-                </a>
-
-            `;
-
-        } else {
-
-            // USER IS LOGGED OUT
-
-            nav.innerHTML = `
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="index.html#browse">
-                    Browse Items
-                </a>
-
-                <a href="login.html">
-                    Login
-                </a>
-
-                <a href="register.html">
-                    Register
-                </a>
-
-                <a
-                    href="report.html"
-                    class="nav-report-btn"
-                >
-                    Report Item
-                </a>
-
-            `;
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "Navigation error:",
-            error
-        );
-
-    }
-}
-// ==========================================
-// PAGE LOAD
-// ==========================================
-// ==========================================
-// DYNAMIC NAVIGATION
-// ==========================================
-
-async function updateNavigation() {
-
-    const nav = document.querySelector("nav");
-
-    if (!nav) return;
+    if (!navLinks) return;
 
     try {
 
-        const response = await fetch("/api/me");
+        const response =
+            await fetch("/api/me");
+
+        let menuHTML = "";
 
         if (response.ok) {
 
             // ==================================
-            // LOGGED IN NAVIGATION
+            // LOGGED-IN USER
             // ==================================
 
-            nav.innerHTML = `
+            menuHTML = `
 
                 <a href="index.html">
                     Home
@@ -2318,7 +2225,7 @@ async function updateNavigation() {
                 </a>
 
                 <a href="dashboard.html">
-                     Dashboard
+                    Dashboard
                 </a>
 
                 <a href="my-reports.html">
@@ -2331,7 +2238,7 @@ async function updateNavigation() {
 
                 <a
                     href="report.html"
-                    class="nav-button"
+                    class="nav-report-btn"
                 >
                     + Report Item
                 </a>
@@ -2348,10 +2255,10 @@ async function updateNavigation() {
         } else {
 
             // ==================================
-            // LOGGED OUT NAVIGATION
+            // LOGGED-OUT USER
             // ==================================
 
-            nav.innerHTML = `
+            menuHTML = `
 
                 <a href="index.html">
                     Home
@@ -2379,14 +2286,37 @@ async function updateNavigation() {
 
                 <a
                     href="report.html"
-                    class="nav-button"
+                    class="nav-report-btn"
                 >
                     + Report Item
                 </a>
 
             `;
-
         }
+
+
+        // ==================================
+        // CREATE NAVIGATION
+        // ==================================
+
+        navLinks.innerHTML = `
+
+            <div class="nav-menu">
+
+                ${menuHTML}
+
+            </div>
+
+            <button
+                class="mobile-menu-toggle"
+                type="button"
+                onclick="toggleMobileMenu()"
+                aria-label="Open navigation menu"
+            >
+                ☰
+            </button>
+
+        `;
 
     } catch (error) {
 
@@ -2394,6 +2324,44 @@ async function updateNavigation() {
             "Navigation error:",
             error
         );
+
+    }
+}
+
+
+// ==========================================
+// MOBILE MENU
+// ==========================================
+
+function toggleMobileMenu() {
+
+    const menu =
+        document.querySelector(".nav-menu");
+
+    const button =
+        document.querySelector(
+            ".mobile-menu-toggle"
+        );
+
+    if (!menu || !button) return;
+
+
+    menu.classList.toggle(
+        "mobile-menu-open"
+    );
+
+
+    if (
+        menu.classList.contains(
+            "mobile-menu-open"
+        )
+    ) {
+
+        button.innerHTML = "✕";
+
+    } else {
+
+        button.innerHTML = "☰";
 
     }
 }

@@ -1935,6 +1935,19 @@ footer span {
     font-weight: 700;
 }
 
+/* ==========================================
+   NAVIGATION MENU
+========================================== */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.mobile-menu-toggle {
+    display: none;
+}
 
 /* =========================================================
    MOBILE
@@ -1942,32 +1955,140 @@ footer span {
 
 @media (max-width: 900px) {
 
-    nav a:not(.nav-button) {
+    /* ==========================================
+       MOBILE NAVIGATION
+    ========================================== */
+
+    .nav-menu {
         display: none;
     }
+
+    .mobile-menu-toggle {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 44px;
+        height: 44px;
+
+        border: none;
+        border-radius: 12px;
+
+        background: #f1efff;
+        color: #4f46e5;
+
+        font-size: 24px;
+        font-weight: bold;
+
+        cursor: pointer;
+    }
+
+    /* OPEN MOBILE MENU */
+
+    .nav-menu.mobile-menu-open {
+        display: flex;
+
+        position: absolute;
+
+        top: 70px;
+        left: 15px;
+        right: 15px;
+
+        flex-direction: column;
+        gap: 4px;
+
+        padding: 12px;
+
+        background: white;
+
+        border: 1px solid #e8eaf3;
+        border-radius: 16px;
+
+        box-shadow:
+            0 15px 35px rgba(30, 41, 59, 0.15);
+
+        z-index: 2000;
+    }
+
+    /* MOBILE MENU LINKS */
+
+    .nav-menu.mobile-menu-open a {
+        display: block;
+
+        width: 100%;
+
+        padding: 14px 16px;
+
+        border-radius: 10px;
+
+        font-size: 15px;
+
+        text-decoration: none;
+    }
+
+    .nav-menu.mobile-menu-open a:hover {
+        background: #f5f3ff;
+        color: #4f46e5;
+    }
+
+
+    /* ==========================================
+       REPORT BUTTON
+    ========================================== */
+
+    .nav-report-btn {
+        font-size: 13px;
+        padding: 10px 14px;
+    }
+
+
+    /* ==========================================
+       STATS
+    ========================================== */
 
     .stats {
         grid-template-columns:
             repeat(2, 1fr);
     }
 
+
+    /* ==========================================
+       ITEMS
+    ========================================== */
+
     .items-grid {
         grid-template-columns: 1fr;
     }
+
+
+    /* ==========================================
+       HERO
+    ========================================== */
 
     .hero h2 {
         font-size: 46px;
     }
 
+
+    /* ==========================================
+       DETAILS CARD
+    ========================================== */
+
     .details-card {
         flex-direction: column;
     }
 
+
+    /* ==========================================
+       DETAILS IMAGE
+    ========================================== */
+
     .details-icon {
         width: 100%;
-
         min-height: 280px;
     }
+
 }
 
 
