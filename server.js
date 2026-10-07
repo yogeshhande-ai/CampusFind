@@ -98,6 +98,35 @@ app.use(
     })
 );
 
+// ==========================================
+// SESSION CONFIGURATION
+// ==========================================
+
+app.set("trust proxy", 1);
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET || "campusfind_secret",
+        resave: false,
+        saveUninitialized: false,
+
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGO_URI,
+            dbName: "lost_found_portal",
+            collectionName: "sessions",
+            ttl: 60 * 60 * 24
+        }),
+
+        cookie: {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production"
+                ? "none"
+                : "lax",
+            maxAge: 1000 * 60 * 60 * 24
+        }
+    })
+);
 
 // ==========================================
 // SESSION CONFIGURATION
