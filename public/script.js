@@ -2189,7 +2189,7 @@ function escapeHTML(value) {
 async function updateNavigation() {
 
     const navLinks =
-        document.querySelector(".nav-links");
+        document.querySelector("nav");
 
     if (!navLinks) return;
 
@@ -2238,7 +2238,7 @@ async function updateNavigation() {
 
                 <a
                     href="report.html"
-                    class="nav-report-btn"
+                    class="nav-button"
                 >
                     + Report Item
                 </a>
