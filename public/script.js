@@ -642,32 +642,28 @@ async function loadItemDetails() {
                 : "Active";
 
 
-        // ==========================================
-        // ITEM IMAGE
-        // ==========================================
+       
+// ==========================================
+// ITEM IMAGE
+// ==========================================
 
-        const detailsImageHTML =
-            item.image
+const detailsImageHTML = item.image
+    ? `
+        <img
+            src="${escapeHTML(item.image)}"
+            alt="${escapeHTML(item.itemName || "Item image")}"
+            style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            "
+            onerror="this.style.display='none';"
+        >
+    `
+    : getIcon(item.category);
 
-                ? `
 
-                    <img
-                        src="/uploads/${item.image}"
-                        alt="${escapeHTML(
-                            item.itemName
-                        )}"
-                        style="
-                            width:100%;
-                            height:100%;
-                            object-fit:cover;
-                        "
-                    >
-
-                `
-
-                : getIcon(
-                    item.category
-                );
 
 
         // ==========================================
