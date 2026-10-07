@@ -2560,7 +2560,7 @@ async function loadMyReports() {
 
                         ? `
                             <img
-                                src="/uploads/${item.image}"
+                                src="${item.image}"
                                 alt="${escapeHTML(
                                     item.itemName
                                 )}"
